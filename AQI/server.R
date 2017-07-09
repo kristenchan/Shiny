@@ -1,7 +1,9 @@
 library(shiny)
 library(ggplot2)
-inputPath = '/Users/hsinyu/Desktop/Example_Shiny_AQI'
-Air_data = read.csv(file.path(inputPath,'data_AQI_new.csv'), stringsAsFactors=FALSE)
+library(RCurl)
+
+inputPath <- getURL('https://raw.githubusercontent.com/kristenchan/Shiny/master/AQI/data_AQI_new.csv', ssl.verifyhost=FALSE, ssl.verifypeer=FALSE)
+Air_data <- read.csv(textConnection(inputPath), stringsAsFactors=FALSE)
 
 shinyServer(function(input, output) {
   
